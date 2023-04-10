@@ -1,0 +1,186 @@
+//prva zadaca
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    stack<int> s;
+    char c;
+    int zbir=0;
+    while(cin>>c && c!='=')
+    {
+
+        if(c!='+' && c!='-' && c!='*')
+        {
+            s.push(c-'0');
+        }
+        else
+        {
+            int br1=s.top();
+            s.pop();
+            int br2=s.top();
+            s.pop();
+            cout<<br1<<" "<<br2<<endl;
+            if(c=='+')
+            {
+                zbir=br1+br2;
+                s.push(zbir);
+            }
+            else if(c=='-')
+            {
+                zbir=+br1-br2;
+                s.push(zbir);
+            }
+            else if(c=='*')
+            {
+                zbir=+br1*br2;
+                s.push(zbir);
+            }
+            cout<<zbir<<endl<<"ABSFDSDSD"<<endl;
+        }
+    }
+    cout<<s.top();
+
+    return 0;
+}
+	
+
+//vtora zadaca
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin>>n;
+    queue<string>licna;
+    queue<string>pasos;
+    queue<string>vozacka;
+    string ime;
+    bool x,y,z;
+    for(int i=0;i<n;i++)
+    {
+        cin>>ime>>x>>y>>z;
+        if(x)
+        {
+            licna.push(ime);
+        }
+        if(y)
+        {
+            pasos.push(ime);
+        }
+        if(z)
+        {
+            vozacka.push(ime);
+        }
+    }
+    while(!licna.empty())
+    {
+        cout<<licna.front()<<" licna karta "<<endl;
+        licna.pop();
+
+    }
+    while(!pasos.empty())
+    {
+        cout<<pasos.front()<<" pasos "<<endl;
+        pasos.pop();
+
+    }
+    while(!vozacka.empty())
+    {
+        cout<<vozacka.front()<<" vozacka " <<endl;
+        vozacka.pop();
+
+    }
+
+  return 0;
+}
+//treta zadaca
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin>>n;
+    queue<pair<int,int>> q;
+    int maks=0;
+    int temp=0;
+    for(int i = 0; i < n; i++)
+    {
+        int cas;
+        int minuti;
+        int d;
+        cin>>cas>>minuti;
+        cin>>d;
+        int vlez=cas*60+minuti;
+        int izlez=cas*60+minuti+d;
+        while(!q.empty() && (q.front().second<vlez || q.front().second>izlez))
+        {
+            q.pop();
+        }
+        q.push(make_pair(vlez,izlez));
+        if(q.size()>maks)
+        {
+            maks=q.size();
+        }
+    }
+
+    cout<<maks;
+    return 0;
+}
+
+
+
+//cetvrta zadaca
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    string username,password;
+    queue<pair<string, string>> q;
+    queue<pair<string, string>> q2;
+    for (int i = 0; i < n; i++) {
+
+        cin>>username>>password;
+        q.push({username, password});
+    }
+cout<<endl;
+int tocno=0;
+    while(tocno!=1 && cin>>username>>password && username!="KRAJ")
+        {
+            while(!q.empty())
+            {
+                if(q.front().first==username && q.front().second==password)
+                {
+                    cout<<"Najaven"<<endl;
+                    tocno=1;
+                    break;
+                }
+                q2.push({q.front().first,q.front().second});
+                q.pop();
+            }
+            while(!q2.empty())
+            {
+                q.push({q2.front().first,q2.front().second});
+                q2.pop();
+            }
+            if (tocno==0)
+            {
+                cout<<"Nenajaven"<<endl;
+            }
+        }
+
+    return 0;
+}
+
+
+
+//petta zadaca
+
